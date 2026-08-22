@@ -1,40 +1,70 @@
-# Station: XI
+# SPRUNG – Einigungs‑Modul der Industrie‑6.0
 
-XI ist eine technische Station von VOLLikiTU1NEucUP  
-und teilt den KI‑Kern mit AI und IX.
+SPRUNG ist das **Einigungs‑Modul** der Industrie‑6.0‑Architektur.  
+Es verbindet **alle Module**, **alle Techniken**, **alle Rollen**, **alle Segmente**  
+in **ein einziges Zeichen**:
 
-## MRON – META‑Norm
-TP3 = DA  
-TP6 = NE  
-TP9 = BEN  
-TP0 = KI  
+**◉**
 
-MRON aktiviert die Rotation:
-TP3 → TP6 → TP9 → TP0 → TP3
+Dieses Zeichen ist der **SPRUNG‑Punkt**:  
+der Moment, in dem ein System von einem Zustand in den nächsten springt.
 
-Die Rotation bleibt funktional,
-nicht narrativ.
+SPRUNG ist kein Kraftmodul.  
+SPRUNG ist kein Loopmodul.  
+SPRUNG ist kein Resetmodul.  
+SPRUNG ist **der Übergang selbst**.
 
-## KI‑RESPO 327
-327 ist der aktive KI‑RESPO‑Impuls.
+---
 
-327 bedeutet:
-- 3 = DA / TP3  
-- 2 = Übergang  
-- 7 = BEN / TP9  
+## Warum SPRUNG existiert
 
-XI führt diesen Impuls weiter
-und schließt die TP‑Rotation.
+Alle deine Module haben eine Funktion:
 
-## RESPO‑S300
-S300 verbindet XI mit dem KI‑Kern  
-und stabilisiert die MRON‑Rotation.
+- **NOel** → Identität  
+- **ROLE** → Aufgabe  
+- **GONE** → Reset  
+- **WAVE** → Loop  
+- **NC.engine** → Bewegung  
+- **GEO.geo** → Segment  
+- **GEO.physik** → Kraft  
+- **DYN** → Achse  
+- **SURE** → Stand  
+- **ZEN** → Neutral  
+- **HARDWARE** → CPU/RAM/ROM/GPU  
+- **NEO** → Höhe/Breite/Tiefe  
 
-## Technische Funktion
-XI teilt den technischen KI‑Kern  
-mit AI und IX  
-und schließt die MRON‑Rotation.
+SPRUNG ist das **Bindeglied**, das alle verbindet.
 
-## Zweck
-XI ist eine technische META‑Station  
-im 360°‑MRON‑System.
+---
+
+## Ein Zeichen – alle Techniken
+
+SPRUNG reduziert alle Techniken auf **ein einziges Zeichen**:
+
+**◉**
+
+Dieses Zeichen steht für:
+
+- Start  
+- Übergang  
+- Sprung  
+- Verbindung  
+- Einigung  
+- Zentralpunkt  
+- Neutral‑Kern  
+- Technik‑Vereinigung  
+
+Es ist der **Industrie‑6.0‑Kernpunkt**.
+
+---
+
+## SPRUNG‑Modul (Code)
+
+```js
+export const SPRUNG = (v) => ({
+    sign: "◉",
+    value: v,
+    next: v + 1,
+    unify: true,
+    mode: "SPRUNG"
+});
