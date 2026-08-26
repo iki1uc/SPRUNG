@@ -10,6 +10,30 @@
             padding: 0;
             box-sizing: border-box;
         }
+<div class="orbit">
+
+    <h1>◉ INDUSTRIE‑6.0 – VISUAL MOVES</h1>
+
+    <div id="symbols" class="symbol-panel"></div>
+
+    <div id="live" class="live-panel"></div>
+
+    <div class="controls">
+        <button onclick="VISUAL_MOVE('SPRUNG', SPRUNG(9))">SPRUNG</button>
+        <button onclick="VISUAL_MOVE('NEXT', SPRUNG(9).next)">SPRUNG.next</button>
+        <button onclick="VISUAL_MOVE('NC.engine', NC.run(9))">NC.engine</button>
+        <button onclick="VISUAL_MOVE('GEO.all', GEOG.all(9))">GEO.geo</button>
+        <button onclick="VISUAL_MOVE('GEO.physik', GEOP.cube(9))">GEO.physik</button>
+        <button onclick="VISUAL_MOVE('DYN.axis', DYN.axis('SPRUNG', 9))">DYN.axis</button>
+        <button onclick="VISUAL_MOVE('SURE', SURE(9))">SURE</button>
+        <button onclick="VISUAL_MOVE('ZEN', ZEN(9))">ZEN</button>
+        <button onclick="VISUAL_MOVE('HARDWARE', HARDWARE(9))">Hardware</button>
+        <button onclick="VISUAL_MOVE('NEO', NEO(9))">NEO</button>
+        <button onclick="VISUAL_MOVE('OLDCITY', OLDCITY.all())">OLDCITY</button>
+        <button onclick="VISUAL_MOVE('NEUCITY', NEUCITY.city(3))">NEUCITY</button>
+    </div>
+
+</div>
 
         body {
             background: #0b0d10;
