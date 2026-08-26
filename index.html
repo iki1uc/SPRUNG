@@ -1,554 +1,307 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>SPRUNG – Industrie‑6.0 · iki1uc</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>◉ SPRUNG – Einigungs-Modul der Industrie 6.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-/* ===== BASIS ===== */
-* { box-sizing:border-box; margin:0; padding:0; }
-body {
-  background: #0a0a0f;
-  color: #e6e6e6;
-  font-family: 'Courier New', monospace;
-  padding: 16px;
-  min-height: 100vh;
-}
+        body {
+            background: #0b0d10;
+            color: #d0d9e6;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
 
-/* ===== HEADER ===== */
-.header {
-  text-align: center;
-  padding: 12px 0 18px;
-  border-bottom: 1px solid #2a2a3a;
-  margin-bottom: 16px;
-}
-.header h1 {
-  color: #00eaff;
-  font-size: 32px;
-  letter-spacing: 4px;
-}
-.header h1 span.sprung {
-  color: #ffdd00;
-  font-size: 38px;
-}
-.header .sub {
-  color: #6688aa;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-top: 4px;
-}
+        .orbit {
+            max-width: 1200px;
+            width: 100%;
+            background: #14181e;
+            border: 1px solid #2a3340;
+            border-radius: 48px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 0 60px rgba(0, 180, 255, 0.06);
+        }
 
-/* ===== COCKPIT GRID ===== */
-.cockpit {
-  display: grid;
-  grid-template-columns: 240px 1fr 220px;
-  gap: 10px;
-  height: calc(100vh - 100px);
-}
+        .sprung-head {
+            text-align: center;
+            border-bottom: 1px dashed #2a3a4a;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
 
-/* ===== PANELS ===== */
-.panel {
-  background: #111118;
-  border: 1px solid #2a2a3a;
-  border-radius: 8px;
-  padding: 12px 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.panel-title {
-  color: #66ccff;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-bottom: 1px solid #2a2a3a;
-  padding-bottom: 5px;
-  margin-bottom: 6px;
-}
-.panel a {
-  color: #66ccff;
-  text-decoration: none;
-  display: block;
-  padding: 2px 0;
-  font-size: 11px;
-  border-bottom: 1px solid #1a1a2a;
-  transition: all 0.2s;
-}
-.panel a:hover {
-  color: #00ff88;
-  background: #1a1a2a;
-  padding-left: 6px;
-}
+        .sprung-head h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: #b8e2ff;
+            text-shadow: 0 0 20px rgba(80, 200, 255, 0.15);
+        }
 
-/* ===== INSTRUMENTE ===== */
-.instrument {
-  background: #0d0d18;
-  border: 1px solid #1a1a3a;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 11px;
-  flex:1;
-}
-.instrument .label { color: #6688aa; font-size: 8px; text-transform: uppercase; }
-.instrument .value { font-size: 14px; font-weight: bold; }
-.instrument .value.green { color: #88ff44; }
-.instrument .value.pink { color: #ff66ff; }
-.instrument .value.blue { color: #66ccff; }
-.instrument .value.gold { color: #ffdd00; }
-.instrument .value.sprung { color: #ffdd00; font-size: 20px; }
+        .sprung-head .sub {
+            font-size: 0.9rem;
+            color: #6a7f94;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
 
-/* ===== DASHBOARD ===== */
-#dashboard {
-  background: #0a0a12;
-  border: 1px solid #2a2a4a;
-  border-radius: 6px;
-  padding: 12px;
-  flex: 1;
-  overflow: auto;
-  min-height: 140px;
-}
+        .sprung-head .sign {
+            font-size: 3rem;
+            line-height: 1;
+            color: #7fc9ff;
+            margin: 0.5rem 0;
+        }
 
-#dash-switch {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-}
-#dash-switch button {
-  background: #111122;
-  color: #6688aa;
-  border: 1px solid #2a2a4a;
-  padding: 4px 12px;
-  cursor: pointer;
-  font-family: 'Courier New', monospace;
-  font-size: 10px;
-  border-radius: 4px;
-  transition: all 0.2s;
-}
-#dash-switch button:hover { background: #1a1a3a; border-color: #66ccff; }
-#dash-switch button.active {
-  background: #1a2a4a;
-  color: #00ff88;
-  border-color: #00ff88;
-}
-#dash-switch button.auto-btn { color: #ffdd00; border-color: #554400; }
-#dash-switch button.auto-btn.active { background: #2a1a00; border-color: #ffdd00; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
 
-/* ===== BOXEN ===== */
-.box { background:#111120; border:1px solid #2a2a4a; padding:8px 10px; margin:3px 0; border-radius:4px; font-size:12px; }
-.box.green { background:#002200; border-color:#88ff44; color:#88ff44; }
-.box.pink { background:#220044; border-color:#dd88ff; color:#dd88ff; }
-.box.blue { background:#002244; border-color:#66ccff; color:#66ccff; }
-.box.purple { background:#330033; border-color:#ff66ff; color:#ff66ff; }
-.box.sprung { background:#1a1a00; border-color:#ffdd00; color:#ffdd00; text-align:center; font-size:28px; }
+        .card {
+            background: #1a212a;
+            border-radius: 24px;
+            padding: 1.5rem 1.2rem;
+            border-left: 3px solid #2f4b66;
+            transition: 0.2s;
+        }
 
-.holo-box {
-  background:#1a0a2a;
-  padding:16px;
-  border:1px solid #550055;
-  border-radius:6px;
-  animation: pulse 2s infinite ease-in-out;
-}
-@keyframes pulse {
-  0% { box-shadow:0 0 6px #8800aa; }
-  50% { box-shadow:0 0 30px #cc44ff; }
-  100% { box-shadow:0 0 6px #8800aa; }
-}
+        .card:hover {
+            border-left-color: #6fc3ff;
+            background: #1f2833;
+        }
 
-/* ===== STATUS ===== */
-.status-ok { color:#00ff88; }
-.status-warn { color:#ffdd00; }
-.status-err { color:#ff3366; }
+        .card h3 {
+            color: #8ab8e6;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #26303d;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
 
-/* ===== FILE LIST ===== */
-.file-list { max-height:160px; overflow-y:auto; font-size:10px; }
-.file-list::-webkit-scrollbar { width:3px; }
-.file-list::-webkit-scrollbar-track { background:#0a0a12; }
-.file-list::-webkit-scrollbar-thumb { background:#2a2a4a; border-radius:2px; }
-.file-list a { font-size:10px; padding:1px 0; }
+        .card .value {
+            font-size: 1.3rem;
+            color: #c0daf5;
+            word-break: break-all;
+        }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 860px) {
-  .cockpit { grid-template-columns:1fr; grid-template-rows:auto; height:auto; }
-  .panel { margin-bottom:6px; }
-}
-</style>
+        .card .meta {
+            font-size: 0.75rem;
+            color: #5b728b;
+            margin-top: 0.6rem;
+        }
+
+        .sprung-code {
+            background: #0e131b;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.8rem;
+            border: 1px solid #25303e;
+            overflow-x: auto;
+            color: #a0c0e0;
+            margin: 2rem 0 1rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .sprung-code .hl {
+            color: #7fc9ff;
+        }
+
+        .sprung-code .cmt {
+            color: #4a6a7a;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #3d5268;
+            border-top: 1px solid #1f2a36;
+            padding-top: 1.5rem;
+        }
+
+        .footer span {
+            letter-spacing: 0.05em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #1d2a38;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            color: #7fc9ff;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+    </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<div class="header">
-  <h1>◉ <span class="sprung">SPRUNG</span> · Industrie‑6.0</h1>
-  <div class="sub">iki1uc · 692 Scale · AEON · Ordnung 1–4</div>
+<div class="orbit">
+
+    <!-- SPRUNG HEAD -->
+    <div class="sprung-head">
+        <div class="sign">◉</div>
+        <h1>SPRUNG</h1>
+        <div class="sub">Einigungs‑Modul der Industrie‑6.0</div>
+        <div style="font-size:0.85rem; color:#4d6a85; margin-top:0.6rem;">
+            ◉ Start · Übergang · Verbindung · Zentralpunkt
+        </div>
+    </div>
+
+    <!-- MODUL-ÜBERSICHT (alle logischen Räume) -->
+    <div class="grid">
+        <div class="card">
+            <h3>◉ NOel</h3>
+            <div class="value">Identität</div>
+            <div class="meta">Kern · Selbst</div>
+        </div>
+        <div class="card">
+            <h3>◉ ROLE</h3>
+            <div class="value">Aufgabe</div>
+            <div class="meta">Rolle · Pfad</div>
+        </div>
+        <div class="card">
+            <h3>◉ GONE</h3>
+            <div class="value">Reset</div>
+            <div class="meta">Löschung · Null</div>
+        </div>
+        <div class="card">
+            <h3>◉ WAVE</h3>
+            <div class="value">Loop</div>
+            <div class="meta">Zyklus · Wiederkehr</div>
+        </div>
+        <div class="card">
+            <h3>◉ NC.engine</h3>
+            <div class="value">Bewegung</div>
+            <div class="meta">Dynamik · Fluss</div>
+        </div>
+        <div class="card">
+            <h3>◉ GEO.geo</h3>
+            <div class="value">Segment</div>
+            <div class="meta">Raum · Bereich</div>
+        </div>
+        <div class="card">
+            <h3>◉ GEO.physik</h3>
+            <div class="value">Kraft</div>
+            <div class="meta">Energie · Wirkung</div>
+        </div>
+        <div class="card">
+            <h3>◉ DYN</h3>
+            <div class="value">Achse</div>
+            <div class="meta">Richtung · Vektor</div>
+        </div>
+        <div class="card">
+            <h3>◉ SURE</h3>
+            <div class="value">Stand</div>
+            <div class="meta">Position · Halt</div>
+        </div>
+        <div class="card">
+            <h3>◉ ZEN</h3>
+            <div class="value">Neutral</div>
+            <div class="meta">Gleichgewicht · Mitte</div>
+        </div>
+        <div class="card">
+            <h3>◉ HARDWARE</h3>
+            <div class="value">CPU · RAM · ROM · GPU</div>
+            <div class="meta">Physisch · Basis</div>
+        </div>
+        <div class="card">
+            <h3>◉ NEO</h3>
+            <div class="value">Höhe · Breite · Tiefe</div>
+            <div class="meta">Dimension · Ausdehnung</div>
+        </div>
+    </div>
+
+    <!-- OLDCITY / NEUCITY – GEO Segmente (aus oldcity.js) -->
+    <div style="margin: 2rem 0 1rem; border-top:1px solid #1f2a36; padding-top:1.5rem;">
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom:1rem;">
+            <span class="badge">◉ OLDCITY</span>
+            <span style="color:#5b728b; font-size:0.8rem;">HY · PE · PER – Segmente des Sprungs</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1rem;">
+            <div style="background:#111920; border-radius:16px; padding:1rem;">
+                <div style="color:#7fc9ff; font-weight:300;">HY</div>
+                <div style="font-size:0.9rem; color:#b0cce8;">◉, 3, 9, ◎, 81, 3↺</div>
+                <div style="font-size:0.7rem; color:#3d5a70;">cache: false</div>
+            </div>
+            <div style="background:#111920; border-radius:16px; padding:1rem;">
+                <div style="color:#7fc9ff; font-weight:300;">PE</div>
+                <div style="font-size:0.9rem; color:#b0cce8;">◉, 9, ◎, 81, ◆, △, ▣</div>
+                <div style="font-size:0.7rem; color:#3d5a70;">cache: false</div>
+            </div>
+            <div style="background:#111920; border-radius:16px; padding:1rem;">
+                <div style="color:#7fc9ff; font-weight:300;">PER</div>
+                <div style="font-size:0.9rem; color:#b0cce8;">3, 9, 81, ◆, 756, △, 27, ▣, 3↺</div>
+                <div style="font-size:0.7rem; color:#3d5a70;">cache: false</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEUCITY – Leitbahn & GegenCache & TMP (aus neucity.js) -->
+    <div style="margin: 2rem 0 1rem; border-top:1px solid #1f2a36; padding-top:1.5rem;">
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom:1rem;">
+            <span class="badge">◉ NEUCITY</span>
+            <span style="color:#5b728b; font-size:0.8rem;">Leitbahn · GegenCache · TMP</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1rem;">
+            <div style="background:#111920; border-radius:16px; padding:1rem;">
+                <div style="color:#7fc9ff;">Leitbahn (v=3)</div>
+                <div style="font-size:0.85rem; color:#b0cce8;">Breite: 9 · Höhe: 27 · Tiefe: 81 · Trans: 243</div>
+            </div>
+            <div style="background:#111920; border-radius:16px; padding:1rem;">
+                <div style="color:#7fc9ff;">GegenCache</div>
+                <div style="font-size:0.75rem; color:#b0cce8;">HY.reverse() · PE.reverse() · PER.reverse()</div>
+            </div>
+            <div style="background:#111920; border-radius:16px; padding:1rem;">
+                <div style="color:#7fc9ff;">TMP Resultierende</div>
+                <div style="font-size:0.75rem; color:#b0cce8;">TMPa (_a) · TMPb (_b) · TMPg (_g)</div>
+                <div style="font-size:0.7rem; color:#3d5a70;">value: 3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPRUNG Code (aus oldcity.js / neucity.js) -->
+    <div class="sprung-code">
+        <span class="cmt">// SPRUNG – Einigungs‑Modul der Industrie‑6.0</span>
+        <br />
+        <span class="hl">export const SPRUNG</span> = (v) => ({<br />
+        &nbsp;&nbsp;sign: <span style="color:#b8e2ff;">"◉"</span>,<br />
+        &nbsp;&nbsp;value: v,<br />
+        &nbsp;&nbsp;next: v + 1,<br />
+        &nbsp;&nbsp;unify: <span style="color:#7fc9ff;">true</span>,<br />
+        &nbsp;&nbsp;mode: <span style="color:#b8e2ff;">"SPRUNG"</span><br />
+        });<br /><br />
+        <span class="cmt">// NEUCITY – Leitbahn, GegenCache, TMP</span><br />
+        <span class="hl">export const NEUCITY</span> = { ... };<br /><br />
+        <span class="cmt">// OLDCITY – HY, PE, PER</span><br />
+        <span class="hl">export const OLDCITY</span> = { ... };
+    </div>
+
+    <!-- FOOTER / ORBIT-RAUM -->
+    <div class="footer">
+        <span>◉ SPRUNG · Orbit-Raum · Alle logischen Räume</span>
+        <span>Respo · Index · Industrie‑6.0</span>
+        <span style="color:#2f4b66;">◉ general :: spock :: sprung</span>
+    </div>
+
 </div>
-
-<!-- ===== COCKPIT ===== -->
-<div class="cockpit">
-
-  <!-- ===== LINKS: NAVIGATION ===== -->
-  <div class="panel" style="grid-column:1; grid-row:1/5;">
-    <div class="panel-title">✦ NAVIGATION</div>
-    <div style="font-size:10px; color:#6688aa; padding-bottom:4px; border-bottom:1px solid #1a1a2a;">
-      <span class="status-ok">●</span> CORE: iki1uc
-      <br><span class="status-ok">●</span> SPRUNG: ◉ aktiv
-    </div>
-    <div style="margin-top:4px;">
-      <a href="./CORE.load">⚡ CORE.load</a>
-      <a href="./fin.e.js">🧠 fin.e.js</a>
-      <a href="./ready.js">📈 ready.js</a>
-      <a href="./respo.js">🎯 respo.js</a>
-      <a href="./ID.html">🆔 ID</a>
-      <a href="./suite.html">📦 SUITE</a>
-    </div>
-    <div style="border-top:1px solid #1a1a2a; padding-top:4px;">
-      <div class="panel-title" style="font-size:8px;">SPRUNG‑MODULE</div>
-      <a href="./sprung.js">◉ SPRUNG</a>
-      <a href="./wave.js">〰️ WAVE</a>
-      <a href="./gone.js">❌ GONE</a>
-      <a href="./role.js">🎭 ROLE</a>
-    </div>
-    <div style="border-top:1px solid #1a1a2a; padding-top:4px;">
-      <div class="panel-title" style="font-size:8px;">NC / GEO</div>
-      <a href="./NC.engine.js">⚙️ NC.engine</a>
-      <a href="./GEO.geo.js">📐 GEO.geo</a>
-      <a href="./GEO.physik.js">⚡ GEO.physik</a>
-      <a href="./dyn.js">🌀 DYN</a>
-    </div>
-    <div style="border-top:1px solid #1a1a2a; padding-top:4px;">
-      <div class="panel-title" style="font-size:8px;">VISUAL</div>
-      <a href="./visual/CONTINUUM.html">🌀 CONTINUUM</a>
-      <a href="./visual/LAGE.html">📍 LAGE</a>
-      <a href="./visual/ORT.html">🧭 ORT</a>
-    </div>
-    <div style="border-top:1px solid #1a1a2a; padding-top:4px; margin-top:auto;">
-      <a href="./AXIS/nc.html" style="color:#66ccff;">🌀 NC</a>
-      <a href="./AXIS/phi.html" style="color:#66ccff;">Φ PHI</a>
-      <a href="./AXIS/phiinfty.html" style="color:#66ccff;">♾️ PHI∞</a>
-    </div>
-  </div>
-
-  <!-- ===== MITTE: DASHBOARD ===== -->
-  <div style="grid-column:2; grid-row:1/5; display:flex; flex-direction:column; gap:6px;">
-
-    <!-- INSTRUMENTE -->
-    <div class="panel" style="flex:0; flex-direction:row; flex-wrap:wrap; gap:4px;">
-      <div class="instrument" style="min-width:80px;"><div class="label">◉ SPRUNG</div><div class="value sprung" id="sprung-val">◉</div></div>
-      <div class="instrument" style="min-width:80px;"><div class="label">READY</div><div class="value green" id="ready-val">…</div></div>
-      <div class="instrument" style="min-width:80px;"><div class="label">MIND</div><div class="value pink" id="mind-val">…</div></div>
-      <div class="instrument" style="min-width:80px;"><div class="label">RESPO</div><div class="value blue" id="respo-val">…</div></div>
-      <div class="instrument" style="min-width:70px;"><div class="label">MOVE</div><div class="value gold" id="move-val">…</div></div>
-    </div>
-
-    <!-- DASHBOARD -->
-    <div class="panel" style="flex:1; min-height:160px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-        <span class="panel-title" style="margin:0; border:0;">📺 DASHBOARD</span>
-        <div id="dash-switch">
-          <button data-mode="grid" class="active">GRID</button>
-          <button data-mode="control">CONTROL</button>
-          <button data-mode="holo">HOLO</button>
-          <button data-mode="auto" class="auto-btn">◉ AUTO</button>
-        </div>
-      </div>
-      <div id="dashboard" style="flex:1;">
-        <div class="box sprung">◉ SPRUNG</div>
-      </div>
-    </div>
-
-    <!-- DATEI-BROWSER -->
-    <div class="panel" style="flex:0; max-height:130px;">
-      <div class="panel-title">📂 DATEI‑BROWSER</div>
-      <div class="file-list" id="file-list">
-        <span style="color:#6688aa; font-size:10px;">Lade Dateien…</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== RECHTS: STATUS ===== -->
-  <div class="panel" style="grid-column:3; grid-row:1/5;">
-    <div class="panel-title">✦ STATUS</div>
-    <div style="font-size:11px; line-height:1.8;">
-      <div><span class="status-ok">●</span> SPRUNG: <span style="color:#ffdd00;">◉ aktiv</span></div>
-      <div><span class="status-ok">●</span> CORE: <span style="color:#00ff88;">aktiv</span></div>
-      <div><span class="status-ok">●</span> PIPELINE: <span style="color:#00ff88;">bereit</span></div>
-      <div><span class="status-ok">●</span> RESPO: <span style="color:#66ccff;">geladen</span></div>
-      <div><span class="status-ok">●</span> MIND: <span style="color:#dd88ff;">AEON</span></div>
-      <div><span class="status-ok">●</span> MOVE: <span style="color:#ffdd00;">OK</span></div>
-      <div><span class="status-ok">●</span> AEON: <span style="color:#ff66ff;">pulsiert</span></div>
-    </div>
-
-    <div style="border-top:1px solid #1a1a2a; padding-top:6px;">
-      <div class="panel-title" style="font-size:8px;">HIGH‑END RESPO</div>
-      <div style="font-size:9px; color:#66ccff; line-height:1.5;">
-        Q81 · X81 · A81 · RESPO.ai · Station · Pipeline
-      </div>
-    </div>
-
-    <div style="border-top:1px solid #1a1a2a; padding-top:6px;">
-      <div class="panel-title" style="font-size:8px;">ORDNUNGEN</div>
-      <div style="font-size:9px; color:#6688aa; line-height:1.5;">
-        1: CONTINUUM <span style="color:#00ff88;">●</span><br>
-        2: TRANSWARP <span style="color:#66ccff;">●</span><br>
-        3: WARP3 <span style="color:#88ff44;">●</span><br>
-        4: AEON <span style="color:#ff66ff;">●</span>
-      </div>
-    </div>
-
-    <div style="border-top:1px solid #1a1a2a; padding-top:6px; margin-top:auto;">
-      <div style="font-size:9px; color:#445566;" id="clock">⏱️ </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ============================================================ -->
-<!-- SCRIPT – ULTIMATE -->
-<!-- ============================================================ -->
-<script>
-(function() {
-
-  // ===== SPRUNG =====
-  const SPRUNG = {
-    sign: "◉",
-    value: 1,
-    next: 2,
-    unify: true,
-    mode: "SPRUNG"
-  };
-
-  // ===== FALLBACKS =====
-  function getReady() {
-    try {
-      if (typeof READY === 'function') return READY();
-      if (window.READY) return window.READY();
-    } catch {}
-    return Math.pow(3, Math.pow(9, 81));
-  }
-
-  function getRaum() {
-    return { ZUG: "A1", BLATT: "ROOT", STATUS: "REAL", IST: "OK", NEU: "TMP", RESULT: "OK" };
-  }
-
-  function getMove(raum) {
-    return raum && raum.STATUS === "REAL" ? raum.IST : (raum && raum.NEU) || "OK";
-  }
-
-  function getRespo() {
-    try {
-      if (typeof RESPO_AXIS !== 'undefined') return RESPO_AXIS;
-      if (window.RESPO_AXIS) return window.RESPO_AXIS;
-    } catch {}
-    return { R: 42, E: 33, S: 81, P: 12, O: 27 };
-  }
-
-  function getMind(raum, map) {
-    return {
-      EBENE: "AEON",
-      ORDNUNG: 4,
-      STATUS: "° & % 3",
-      SIGNAL: raum && raum.IST === "OK" ? "grün" : "gelb",
-      WAHRNEHMUNG: raum && raum.STATUS === "REAL" ? "klar" : "unscharf",
-      FOKUS: map ? "verbunden" : "leer",
-      VERFÜGBARKEIT: map ? "hoch" : "niedrig",
-      STABILITÄT: raum && raum.NEU === "TMP" ? "variabel" : "stabil",
-      RÜCKFÜHRUNG: raum && raum.BLATT === "ROOT" ? "aktiv" : "neutral",
-      SIGNATUR: "AEON-A1-ROOT"
-    };
-  }
-
-  // ===== INSTRUMENTE =====
-  function updateInstruments() {
-    try {
-      const ready = getReady();
-      const raum = getRaum();
-      const mind = getMind(raum, true);
-      const move = getMove(raum);
-      const respo = getRespo();
-      const respoStr = JSON.stringify(respo);
-
-      document.getElementById("sprung-val").innerText = SPRUNG.sign;
-      document.getElementById("ready-val").innerText = typeof ready === 'number' ? ready.toFixed(0) : String(ready);
-      document.getElementById("mind-val").innerText = mind.EBENE + " (" + mind.ORDNUNG + ")";
-      document.getElementById("respo-val").innerText = respoStr.includes("S") ? "S‑aktiv" : "…";
-      document.getElementById("move-val").innerText = move || "—";
-    } catch(e) {
-      document.getElementById("sprung-val").innerText = "◉";
-      document.getElementById("ready-val").innerText = "✓";
-      document.getElementById("mind-val").innerText = "AEON (4)";
-      document.getElementById("respo-val").innerText = "S‑aktiv";
-      document.getElementById("move-val").innerText = "OK";
-    }
-  }
-
-  // ===== DASHBOARD RENDERER =====
-  const dash = document.getElementById("dashboard");
-
-  function renderGrid() {
-    try {
-      const ready = getReady();
-      const raum = getRaum();
-      const mind = getMind(raum, true);
-      const respo = getRespo();
-      dash.innerHTML = `
-        <div class="box sprung">◉ SPRUNG</div>
-        <div class="box green">📊 GRID<br>READY: ${typeof ready === 'number' ? ready.toFixed(0) : ready}</div>
-        <div class="box pink">🧠 MIND: ${mind.EBENE} (${mind.ORDNUNG})</div>
-        <div class="box blue">🎯 RESPO: ${JSON.stringify(respo)}</div>
-        <div class="box purple">♾️ AEON: ${mind.SIGNATUR}</div>
-      `;
-    } catch {
-      dash.innerHTML = `<div class="box sprung">◉ SPRUNG</div><div class="box green">GRID</div>`;
-    }
-  }
-
-  function renderControl() {
-    try {
-      const ready = getReady();
-      const raum = getRaum();
-      const mind = getMind(raum, true);
-      const respo = getRespo();
-      dash.innerHTML = `
-        <div style="background:#111120;padding:14px;border:1px solid #2a2a4a;border-radius:4px;">
-          <div style="color:#ffdd00;font-size:24px;text-align:center;">◉ SPRUNG</div>
-          <h2 style="color:#66ccff;font-size:14px;">⏣ CONTROL</h2>
-          <p style="color:#88ff44;">READY: ${typeof ready === 'number' ? ready.toFixed(0) : ready}</p>
-          <p style="color:#dd88ff;">MIND: ${mind.EBENE} (${mind.ORDNUNG})</p>
-          <p style="color:#66ccff;">RESPO: ${JSON.stringify(respo)}</p>
-          <p style="color:#ff66ff;">AEON: ${mind.SIGNATUR}</p>
-          <p style="color:#00ff88;">SIGNAL: ${mind.SIGNAL}</p>
-        </div>
-      `;
-    } catch {
-      dash.innerHTML = `<div style="background:#111120;padding:14px;border:1px solid #2a2a4a;"><div style="color:#ffdd00;font-size:24px;">◉</div><h2 style="color:#66ccff;">CONTROL</h2></div>`;
-    }
-  }
-
-  function renderHolo() {
-    try {
-      const ready = getReady();
-      const raum = getRaum();
-      const mind = getMind(raum, true);
-      const respo = getRespo();
-      dash.innerHTML = `
-        <div class="holo-box">
-          <div style="color:#ffdd00;font-size:32px;text-align:center;">◉</div>
-          <h2 style="color:#ff66ff;font-size:14px;">✦ HOLO CORE ✦</h2>
-          <p style="color:#88ff44;">READY: ${typeof ready === 'number' ? ready.toFixed(0) : ready}</p>
-          <p style="color:#dd88ff;">MIND: ${mind.EBENE}</p>
-          <p style="color:#66ccff;">RESPO: ${JSON.stringify(respo)}</p>
-          <p style="color:#ff66ff;">AEON: ${mind.SIGNATUR}</p>
-          <p style="color:#00ff88;">SIGNAL: ${mind.SIGNAL}</p>
-        </div>
-      `;
-    } catch {
-      dash.innerHTML = `<div class="holo-box"><div style="color:#ffdd00;font-size:32px;">◉</div><h2 style="color:#ff66ff;">HOLO</h2></div>`;
-    }
-  }
-
-  // ===== ENTSCHEIDUNG =====
-  function decideMode() {
-    try {
-      const ready = getReady();
-      const raum = getRaum();
-      const move = getMove(raum);
-      const respo = getRespo();
-      const respoStr = JSON.stringify(respo);
-
-      let scoreGrid = 0, scoreControl = 0, scoreHolo = 0;
-      if (ready > 0) scoreGrid += 2;
-      if (move === "OK") scoreControl += 2;
-      if (respoStr.includes("S")) scoreHolo += 3;
-      if (raum.STATUS === "REAL") scoreControl += 1;
-
-      const max = Math.max(scoreGrid, scoreControl, scoreHolo);
-      if (max === scoreGrid) return "grid";
-      if (max === scoreControl) return "control";
-      return "holo";
-    } catch {
-      return "grid";
-    }
-  }
-
-  function updateDashboard(mode) {
-    if (mode === "grid") { renderGrid(); }
-    else if (mode === "control") { renderControl(); }
-    else if (mode === "holo") { renderHolo(); }
-    else {
-      updateDashboard(decideMode());
-      return;
-    }
-    updateInstruments();
-  }
-
-  // ===== SWITCHER =====
-  let autoInterval = null;
-
-  function setupSwitcher() {
-    const buttons = document.querySelectorAll("#dash-switch button");
-
-    buttons.forEach(btn => {
-      btn.addEventListener("click", function() {
-        buttons.forEach(b => b.classList.remove("active"));
-        this.classList.add("active");
-
-        if (autoInterval) {
-          clearInterval(autoInterval);
-          autoInterval = null;
-        }
-
-        const mode = this.dataset.mode;
-        if (mode === "auto") {
-          updateDashboard("auto");
-          autoInterval = setInterval(() => updateDashboard("auto"), 1500 + Math.random() * 1500);
-          return;
-        }
-        updateDashboard(mode);
-      });
-    });
-  }
-
-  // ===== DATEI-BROWSER =====
-  function loadFileList() {
-    const list = document.getElementById("file-list");
-    const files = [
-      "CORE.load", "fin.e.js", "ready.js", "respo.js", "ID.html", "suite.html",
-      "sprung.js", "wave.js", "gone.js", "role.js",
-      "NC.engine.js", "GEO.geo.js", "GEO.physik.js", "dyn.js",
-      "visual/CONTINUUM.html", "visual/LAGE.html", "visual/ORT.html",
-      "AXIS/nc.html", "AXIS/phi.html", "AXIS/phi2.html", "AXIS/phiinfty.html"
-    ];
-    list.innerHTML = files.map(f => `<a href="./${f}">📄 ${f}</a>`).join("");
-  }
-
-  // ===== CLOCK =====
-  function updateClock() {
-    document.getElementById("clock").innerText = "⏱️ " + new Date().toLocaleTimeString();
-  }
-
-  // ===== START =====
-  function start() {
-    loadFileList();
-    setupSwitcher();
-    updateDashboard("grid");
-    updateClock();
-    setInterval(updateClock, 1000);
-    setInterval(updateInstruments, 2000);
-
-    console.log("◉ SPRUNG geladen – Industrie‑6.0 · iki1uc");
-    console.log("📊 692 Repos · Ordnung 1–4 · AEON · RESPO‑S");
-    console.log("🔄 Auto-Switcher bereit");
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    start();
-  }
-
-})();
-</script>
 
 </body>
 </html>
