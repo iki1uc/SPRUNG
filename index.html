@@ -18,6 +18,14 @@
 
     <div id="live" class="live-panel"></div>
 
+   <div class="orbit">
+
+    <h1>◉ INDUSTRIE‑6.0 – VISUAL MOVES</h1>
+
+    <div id="symbols" class="symbol-panel"></div>
+
+    <div id="live" class="live-panel"></div>
+
     <div class="controls">
         <button onclick="VISUAL_MOVE('SPRUNG', SPRUNG(9))">SPRUNG</button>
         <button onclick="VISUAL_MOVE('NEXT', SPRUNG(9).next)">SPRUNG.next</button>
@@ -32,6 +40,8 @@
         <button onclick="VISUAL_MOVE('OLDCITY', OLDCITY.all())">OLDCITY</button>
         <button onclick="VISUAL_MOVE('NEUCITY', NEUCITY.city(3))">NEUCITY</button>
     </div>
+
+</div>
 
 </div>
 
@@ -324,6 +334,14 @@
         <span>Respo · Index · Industrie‑6.0</span>
         <span style="color:#2f4b66;">◉ general :: spock :: sprung</span>
     </div>
+function SYMBOL_RENDER(list) {
+    const out = document.getElementById("symbols");
+    out.innerHTML = list.map(x => `<span class="sym">${x}</span>`).join(" ");
+}
+SYMBOL_RENDER(OLDCITY.HY().seg);
+SYMBOL_RENDER(OLDCITY.PE().seg);
+SYMBOL_RENDER(OLDCITY.PER().seg);
+SYMBOL_RENDER(NEUCITY.gegenCache().HY);
 
 </div>
 
